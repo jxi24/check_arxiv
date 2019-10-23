@@ -16,9 +16,17 @@ from pylatex.utils import NoEscape, bold
 
 import notify
 
-SUBJECTS = ['hep-ph', 'hep-ex', 'hep-lat', 'hep-th', 'cs.LG', 'stat.ML']
+import yaml
 
-PATH = '/home/isaacson/Documents/ArXiv'
+with open('config.yaml', 'r') as config_file:
+    try:
+        config = yaml.safe_load(config_file)
+    except yaml.YAMLError as exc:
+        print(exc)
+
+SUBJECTS = config['subjects']
+
+PATH = config['path']
 
 
 class URLCommand(CommandBase):
