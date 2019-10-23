@@ -18,7 +18,9 @@ import notify
 
 import yaml
 
-with open('config.yaml', 'r') as config_file:
+LOC, FILE = os.path.split(__file__)
+
+with open(os.path.join(LOC, 'config.yaml'), 'r') as config_file:
     try:
         config = yaml.safe_load(config_file)
     except yaml.YAMLError as exc:
