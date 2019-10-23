@@ -160,15 +160,18 @@ def main(pdf):
     except subprocess.CalledProcessError:
         failed = True
 
+    # Create directories if needed
+    if not os.path.exists(os.path.join(PATH, 'pdfs')):
+        os.makedirs(os.path.join(PATH, 'pdfs'))
+    if not os.path.exists(os.path.join(PATH, 'tex')):
+        os.makedirs(os.path.join(PATH, 'tex'))
+
     # Move files
     os.rename('{}.pdf'.format(pdf),
               os.path.join(PATH, 'pdfs', '{}.pdf'.format(pdf)))
 
     os.rename('{}.tex'.format(pdf),
               os.path.join(PATH, 'tex', '{}.tex'.format(pdf)))
-
-    os.rename('{}.synctex.gz'.format(pdf),
-              os.path.join(PATH, 'archive', '{}.synctex.gz'.format(pdf)))
 
     # Remove unneeded files if failed
     if failed:
