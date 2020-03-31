@@ -118,7 +118,7 @@ def get_articles(subject):
         print(article)
 
     if subject != SUBJECTS[-1]:
-        time.sleep(3)
+        time.sleep(5)
     return articles
 
 
@@ -192,7 +192,7 @@ def onOpen(notification, action, pdf_name):
     assert(action == 'open'), 'Action was not open!'
     print('Open pdf')
     pdf_name = os.path.join(PATH, 'pdfs', '{}.pdf'.format(pdf_name))
-    subprocess.Popen(['evince', pdf_name])
+    subprocess.Popen(['zathura', pdf_name])
     notification.close()
 
 
